@@ -6,18 +6,20 @@ from util import ValueIteration
 # Problem 1
 
 # If you decide 1 is true,  put "return None" for
-# the code blocks below.  If you decide that 1 is false, construct a counterexample.
+# the code blocks below.  If you decide that 1 is false, construct a counterexample. ###########RETURN NONE RETURN NONE RETURN NONE RETURN NONE
 class CounterexampleMDP(util.MDP):
     # Return a value of any type capturing the start state of the MDP.
     def startState(self):
         # BEGIN_YOUR_CODE (our solution is 1 line of code, but don't worry if you deviate from this)
-        raise Stupiderror
+        return 0 #bruh
+        #return None
         # END_YOUR_CODE
 
     # Return a list of strings representing actions possible from |state|.
     def actions(self, state):
         # BEGIN_YOUR_CODE (our solution is 1 line of code, but don't worry if you deviate from this)
-        raise NotImplementedError
+        return [-2,2]
+        # return None
         # END_YOUR_CODE
 
     # Given a |state| and |action|, return a list of (newState, prob, reward) tuples
@@ -25,13 +27,15 @@ class CounterexampleMDP(util.MDP):
     # Remember that if |state| is an end state, you should return an empty list [].
     def succAndProbReward(self, state, action):
         # BEGIN_YOUR_CODE (our solution is 1 line of code, but don't worry if you deviate from this)
-        raise NotImplementedError
+        return [(state, 0.75, 0), (min(max(state + action, -1), 1), 0.25, state)]
+        # return None
         # END_YOUR_CODE
 
     # Set the discount factor (float or integer) for your counterexample MDP.
     def discount(self):
         # BEGIN_YOUR_CODE (our solution is 1 line of code, but don't worry if you deviate from this)
-        raise NotImplementedError
+        return 0.75
+        # return None
         # END_YOUR_CODE
 
 ############################################################
@@ -69,17 +73,13 @@ class BlackjackMDP(util.MDP):
     def actions(self, state):
         return ['Take', 'Peek', 'Quit']
 
-    # Given a |state| and |action|, return a list of (newState, prob, reward) tuples
-    # corresponding to the states reachable from |state| when taking |action|.
     # A few reminders:
     # * Indicate a terminal state (after quitting, busting, or running out of cards)
     #   by setting the deck to None.
-    # * If |state| is an end state, you should return an empty list [].
     # * When the probability is 0 for a transition to a particular new state,
     #   don't include that state in the list returned by succAndProbReward.
     def succAndProbReward(self, state, action):
-        # BEGIN_YOUR_CODE (our solution is 37 lines of code, but don't worry if you deviate from this)
-        raise NotImplementedError
+
         # END_YOUR_CODE
 
     def discount(self):
@@ -88,13 +88,17 @@ class BlackjackMDP(util.MDP):
 ############################################################
 # Problem 2b
 
-def peekingMDP():
+def peekingMDP(): #DONE
     """
     Return an instance of BlackjackMDP where peeking is the
     optimal action at least 10% of the time.
     """
     # BEGIN_YOUR_CODE (our solution is 1 line of code, but don't worry if you deviate from this)
-    raise NotImplementedError
+    cards = [1,2,3,14,21]
+    peekcost = 1
+    multiplicity = 25
+    threshhold = 20
+    return BlackjackMDP(cards, multiplicity, threshhold, peekcost)
     # END_YOUR_CODE
 
 ############################################################
